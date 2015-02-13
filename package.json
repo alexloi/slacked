@@ -1,0 +1,24 @@
+{
+  "name": "slacked",
+  "version": "0.0.1",
+  "description": "Repository of all things slacked",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexloi/slacked.git"
+  },
+  "keywords": [
+    "slack",
+    "it",
+    "yo"
+  ],
+  "author": "StreetHub <alex@streethub.com> (http://tech.streethub.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexloi/slacked/issues"
+  },
+  "homepage": "https://github.com/alexloi/slacked"
+}
