@@ -1,0 +1,47 @@
+doctype html
+head
+    title Pusher Test
+    script(src='//js.pusher.com/2.2/pusher.min.js', type='text/javascript')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js', type='text/javascript')
+    script(type='text/javascript').
+      // Enable pusher logging - don't include this in production
+      Pusher.log = function(message) {
+        if (window.console && window.console.log) {
+          window.console.log(message);
+        }
+      };
+      var pusherPublic = "#{config.pusherPublic}";
+      var pusher = new Pusher(pusherPublic);
+      var channel = pusher.subscribe('feed');
+      channel.bind('message', function(data) {
+        var doc = $('#feed');
+        var el = $('#' + data._id);
+        var exists = el.length === 1;
+
+        if(exists) {
+          var counter = el.find('.counter');
+          var value = counter.html();
+          value = parseInt(value);
+          value++;
+          console.log('vakl', value);
+          counter.html(String(value++));
+        } else {
+          if(data.parsedType === 'image') doc.prepend('<p> <img src="' + data.parsedResult + '" /> </p>');
+          else doc.prepend('<p> <a href="' + data.parsedResult + '"> ' + data.parsedResult + ' </a> </p>' );
+        }
+      });
+  body
+    p#feed
+      - for record in records
+        p(id=record._id)
+          span Conversation context:
+            =record.text
+          - if (record.parsedType === 'image') {
+            img(src=record.parsedResult)
+          - } else {
+            a(href=record.parsedResult)
+              =record.parsedResult
+          - }
+          b Shared:
+              span(class="counter")
+                =record.counter

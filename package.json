@@ -20,5 +20,14 @@
   "bugs": {
     "url": "https://github.com/alexloi/slacked/issues"
   },
-  "homepage": "https://github.com/alexloi/slacked"
+  "homepage": "https://github.com/alexloi/slacked",
+  "dependencies": {
+    "slacklib": "git://github.com/alexloi/slacklib.git",
+    "mongoose": "^3.8.23",
+    "bluebird": "^2.9.9",
+    "lodash": "^3.2.0",
+    "pusher": "^1.0.3",
+    "express": "^4.11.2",
+    "jade": "^1.9.2"
+  }
 }
