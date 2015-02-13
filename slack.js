@@ -30,10 +30,20 @@ var save = function(doc) {
     });
 };
 
+/**
+ * Find the record
+ * @param  {Object} doc Prepared doc
+ * @return {Promise}     Promise of find
+ */
 var find = function(doc) {
     return Record.findOne({ parsedResult: doc.parsedResult }).execAsync();
 };
 
+/**
+ * Create or update the record
+ * @param  {Object} obj Object to create Or update
+ * @return {Promise}     creation / update promise
+ */
 var createOrUpdate = function(obj) {
     return find(obj).then(function(doc) {
         console.log('db doc:', doc);
@@ -54,6 +64,7 @@ var createOrUpdate = function(obj) {
         }
     });
 };
+
 /**
  * Post latest record to web via Pusher
  * @param  {Object} doc Record

@@ -10,7 +10,8 @@ var schema = new mongoose.Schema({
     dump: { type: String, required: true },
     created_at: { type: Date, default: Date.now },
     // How many times this link was shared
-    counter: { type: Number, default: 0 }
+    counter: { type: Number, default: 0 },
+    public: { type: Boolean, default: false }
 },{
     safe: true,
     strict: true
@@ -18,6 +19,7 @@ var schema = new mongoose.Schema({
 
 schema.pre('save', function(next){
     this.counter++;
+    // TODO: Resolve the channel, resolve the user, pull link meta
     return next();
 });
 
