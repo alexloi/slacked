@@ -3,7 +3,7 @@ var Bluebird = require('bluebird');
 var _ = require('lodash');
 var Slacklib = require('slacklib');
 
-var Record = require('./models/record');
+var Record = dependency('model', 'record');
 
 var Pusher = require('pusher');
 var push = new Pusher({
