@@ -35,7 +35,6 @@ var schema = new Schema({
         type: String,
         lowercase: true,
         index: {
-            unique: true,
             sparse: true
         },
         trim: true,

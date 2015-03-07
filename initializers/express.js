@@ -7,19 +7,21 @@ var express = require('express');
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var passport = require('passport');
-
 var app = express();
 
 var userRoutes = dependency('route', 'user');
 var staticRoutes = dependency('route', 'static');
 
-var run = function() {
-    app.listen('3000', '0.0.0.0');
-
+/**
+ * Initial run config for express
+ * @return {express}      Returns the mounted express app
+ */
+var run = function(http) {
     app.use(express.static( 'public', {maxAge: 86400000} ));
     app.set('view engine', 'jade');
     app.set('views', 'public');
@@ -28,7 +30,7 @@ var run = function() {
     app.use(bodyParser.json());
 
     app.use(session({
-        secret: 'sup3rs3cr37',
+        secret: config.sessionSecret,
         resave: true,
         saveUninitialized: true,
         store: new MongoStore({ mongooseConnection: mongoose.connection })
@@ -39,6 +41,8 @@ var run = function() {
 
     userRoutes(app);
     staticRoutes(app);
+
+    return app;
 };
 
 module.exports = {

@@ -7,10 +7,8 @@ var findOrCreate = require('mongoose-findorcreate')
 /* Main Schema */
 var schema = new Schema({
     /* Account info */
-    teamId: {
-        type: String,
-        required: true
-    }
+    teamId: { type: String, required: true },
+    imported: { type: Boolean, default: false }
 },
 {
     safe: true,

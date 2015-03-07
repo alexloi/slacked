@@ -1,0 +1,23 @@
+{
+  "name": "slacked",
+  "version": "0.0.1",
+  "homepage": "https://github.com/alexloi/slacked",
+  "authors": [
+    "alexloi <alex@roboboogie.us>"
+  ],
+  "description": "Slacked lib",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "semantic-ui": "~1.9.3",
+    "socket.io": "~1.3.4"
+  }
+}

@@ -3,7 +3,7 @@ var Bluebird = require('bluebird');
 var _ = require('lodash');
 var Slacklib = require('slacklib');
 
-var Record = dependency('model', 'record');
+var Message = dependency('model', 'message');
 
 var Pusher = require('pusher');
 var push = new Pusher({
@@ -15,12 +15,12 @@ var push = new Pusher({
 var slack = new Slacklib(config.slack.token);
 
 /**
- * Save new record
+ * Save new message
  * @param  {Object} doc Normalised doc ready to go into db
  * @return {Promise}
  */
 var save = function(doc) {
-    var newDoc = new Record(doc);
+    var newDoc = new Message(doc);
 
     return new Bluebird(function(resolve, reject){
         newDoc.save( function(err, doc) {
@@ -31,16 +31,16 @@ var save = function(doc) {
 };
 
 /**
- * Find the record
+ * Find the message
  * @param  {Object} doc Prepared doc
  * @return {Promise}     Promise of find
  */
 var find = function(doc) {
-    return Record.findOne({ parsedResult: doc.parsedResult }).execAsync();
+    return Message.findOne({ parsedResult: doc.parsedResult }).execAsync();
 };
 
 /**
- * Create or update the record
+ * Create or update the message
  * @param  {Object} obj Object to create Or update
  * @return {Promise}     creation / update promise
  */
@@ -66,8 +66,8 @@ var createOrUpdate = function(obj) {
 };
 
 /**
- * Post latest record to web via Pusher
- * @param  {Object} doc Record
+ * Post latest message to web via Pusher
+ * @param  {Object} doc Message
  */
 var postPusher = function (doc) {
     console.log('* Pushing to pusher:', doc);
@@ -75,7 +75,7 @@ var postPusher = function (doc) {
 };
 
 /**
- * Normalise record before storing in DB
+ * Normalise message before storing in DB
  * @param  {Object} obj Message received from slackbot
  * @return {Promise}     Promise
  */

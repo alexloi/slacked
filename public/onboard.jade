@@ -1,0 +1,65 @@
+doctype html
+include ./head
+
+body
+    h1 Onboarding ey, #{user.displayName} ?
+
+    h2 Channels:
+    - each channel in channels
+        .ui.label #{channel.name}
+            - var link = '/import/channels/' + channel.id;
+            a.detail(target='_blank' href=link)
+                i.user.icon
+                | #{channel.members.length}
+
+    h2 Groups:
+    - each group in groups
+        .ui.label #{group.name}
+            - var link = '/import/groups/' + group.id;
+            a.detail(target='_blank' href=link)
+                i.user.icon
+                | #{group.members.length}
+
+    h2 Users:
+    - each user in users
+        .ui.label #{user.profile.real_name_normalized}
+            - var link = 'mailto:' + user.profile.email;
+            a.detail(target='_blank' href=link)
+                i.user.icon
+                | #{user.profile.email}
+    h2 Logger:
+    .ui.list#log
+
+    script(src='/components/jquery/dist/jquery.min.js', type='text/javascript')
+    script(src='https://cdn.socket.io/socket.io-1.3.4.js')
+    script.
+        var socket = io();
+        var slackId = '#{user.slackId}';
+        var slackTeamId = '#{user.slackTeamId}';
+
+        socket.on(slackId, function(obj) {
+            console.log('Connected!');
+        });
+
+        socket.on(slackTeamId, function(obj) {
+            console.log('Team specific comms:', obj);
+        });
+
+        socket.on('importer-' + slackId, function(msg) {
+            var entries = [];
+
+            if(msg.attachments){
+                msg.attachments.forEach(function(a){
+                    var img = a.image_url || a.thumb_url;
+                    entries.push('<div class="item"><img class="ui avatar image" src="'+img+'"/><div class="content"><a class="header" href="'+a.from_url+'"> '+ a.from_url + '</a></div>');
+                });
+            }
+
+            if(msg.file){
+                entries.push('<div class="item"><img class="ui avatar image" src="'+msg.file.thumb_64+'"/><div class="content"><a class="header" href="'+mg.file.url+'"> '+ msg.title + '</a></div>');
+            }
+
+            entries.forEach(function(e){
+                $('#log').prepend(e);
+            });
+        });

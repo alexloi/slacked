@@ -25,5 +25,5 @@ schema.pre('save', function(next){
     return next();
 });
 
-var Record = mongoose.model('Record', schema);
-module.exports = Record;
+var Message = mongoose.model('Message', schema);
+module.exports = Message;

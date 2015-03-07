@@ -1,15 +1,11 @@
 var config = loadConfig();
-var Record = dependency('model', 'record');
+var Message = dependency('model', 'message');
 
 module.exports = function(app) {
     app.get('/', function(req, res, next){
-        Record.find().sort({ created_at: 'desc' }).execAsync()
-        .then(function(records) {
-            var data = {
-                config: { pusherPublic: config.pusher.public },
-                records: records,
-                loggedIn: false
-            };
+        Message.find().sort({ created_at: 'desc' }).execAsync()
+        .then(function(messages) {
+            var data = {};
 
             if(req.user) {
                 data.user = { name: req.user.displayName };
