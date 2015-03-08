@@ -3,6 +3,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var findOrCreate = require('mongoose-findorcreate')
+var plugins = dependency('lib','model_plugins');
+
 var Team = dependency('model','team');
 
 /* Main Schema */
@@ -31,6 +33,12 @@ var schema = new Schema({
     refreshToken: {
         type: String
     },
+    role: {
+        type: String,
+        required: true,
+        default: 'member',
+        enum: ['owner', 'member', 'admin']
+    },
     email: {
         type: String,
         lowercase: true,
@@ -46,8 +54,16 @@ var schema = new Schema({
     strict: true
 });
 
+/**
+ * Plugins
+ */
 schema.plugin(findOrCreate);
+schema.plugin(plugins.addUpdatedField);
+schema.plugin(plugins.toJson);
 
+/**
+ * Hooks
+ */
 schema.pre('save', function(next) {
     var self = this;
 

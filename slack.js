@@ -1,3 +1,5 @@
+'use strict';
+
 var config = require('./config');
 var Bluebird = require('bluebird');
 var _ = require('lodash');

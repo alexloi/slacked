@@ -1,97 +1,163 @@
-'use strict'
+'use strict';
 
-var config = loadConfig();
-var Bluebird = require('bluebird');
-var passport = require('passport');
-var SlackAPI = require('slack-node');
+var routeFindMiddleware = dependency('middleware', 'route_find');
+var apiPath = dependency('lib', 'helpers').apiPath;
 
-module.exports = function(app) {
-    app.get('/auth/slack', passport.authorize('slack'));
-    app.get('/auth/slack/callback',
-        passport.authenticate('slack', { failureRedirect: '/error' }),
-        function(req, res) {
-            // Successful authentication, redirect home.
-            return res.redirect('/onboard');
-        }
-    );
-    app.get('/error', function( req, res) {
-        return res.send(400);
-    });
+/**
+ * user routes
+ * @param  {Object} app Express app
+ */
+module.exports = function(app, controller) {
+    /**
+     * @api {get} /users/ Find Users
+     * @apiName FindUsers
+     * @apiGroup User
+     *
+     * @apiDescription Throws AuthError
+     */
+    app.get(apiPath('users'), controller.index.bind(controller));
 
-    app.get('/auth/logout', function(req, res) {
-        req.logout();
-        return res.redirect('/');
-    });
+    /**
+     * @api {get} /users/:_ids Retrieve Users by id
+     * @apiName RetrieveUsers
+     * @apiGroup User
+     * @apiPermission admin, retail, hub
+     *
+     * @apiDescription Only admin can find multiple ids
+     *
+     * @apiStructure ResourceFindByIds
+     *
+     * @apiSuccess {Array}  users       List of all the found users
+     * @apiErrorStructure ResourceError
+     */
+    app.get(apiPath('users/:_ids'), routeFindMiddleware(controller));
 
-    // Setup onboarding strategy here
-    app.get('/onboard', function(req, res, next){
-        if(!req.user) return res.redirect('/');
+    /**
+     * @api {post} /users/ Create User
+     * @apiName CreateUser
+     * @apiGroup User
+     * @apiPermission admin, retail
+     *
+     * @apiParam {String} email     Email
+     * @apiParam {String} role     Role (`hub`, `retail`)
+     * @apiParam {String} password     Password
+     * @apiParam {String} password_confirmation     Password confirmation
+     *
+     * @apiErrorStructure ResourceError
+     */
+    app.post(apiPath('users'), controller.create.bind(controller) );
 
-        var slack = new SlackAPI(req.user.accessToken);
+    /**
+     * @api {put} /users/:_id Update User
+     * @apiName UpdateUser
+     * @apiGroup User
+     * @apiPermission admin, retail
+     *
+     * @apiSuccess {Array}  users       The updated user
+     * @apiErrorStructure ResourceError
+     */
+    app.put(apiPath('users/:_id'), controller.update.bind(controller) );
 
-        slack.api('channels.list', function(err, response){
-            var channels = response.channels;
+    // ACTIONS
 
-            slack.api('users.list', function(err, response){
-                var users = response.members;
+    /**
+     * @api {post} /signup/ Signup User
+     * @apiName SignupUser
+     * @apiGroup User
+     * @apiPermission all
+     *
+     * @apiParam {String} email     Email
+     * @apiParam {String} role     Role (`hub`, `retail`)
+     * @apiParam {String} password     Password
+     * @apiParam {String} password_confirmation     Password confirmation
+     *
+     * @apiErrorStructure ResourceError
+     */
+    app.post(apiPath('signup'), controller.signup.bind(controller));
 
-                slack.api('groups.list', function(err, response){
-                    var groups = response.groups;
+    /**
+     * @api {post} /login/ Login User
+     * @apiName LoginUser
+     * @apiGroup User
+     * @apiPermission all
+     * @apiParam {String} email     Email
+     * @apiParam {String} password     Password
+     *
+     * @apiErrorStructure ResourceError
+     */
+    app.post(apiPath('login'), controller.login.bind(controller));
 
-                    return res.render('onboard', { user: req.user, channels: channels, users: users, groups: groups });
-                });
-            });
-        });
-    });
+    /**
+     * @api {post} /forgot/ Forgot User Password
+     * @apiName ForgotUser
+     * @apiGroup User
+     * @apiPermission all
+     *
+     * @apiParam {String} email     Email
+     *
+     * @apiErrorStructure ResourceError
+     */
+    app.post(apiPath('forgot'), controller.forgot.bind(controller));
 
-    app.get('/import/:type/:id', function(req, res, next){
-        if(!req.user) return res.redirect('/');
-        console.log(req.params);
-        var user = req.user;
-        var slack = new SlackAPI(user.accessToken);
-        var params = {
-            type: req.params.type,
-            id: req.params.id
-        };
+    /**
+     * @api {post} /reset/ Reset User Password
+     * @apiName ResetUserPassword
+     * @apiGroup User
+     * @apiPermission all
+     *
+     * @apiParam {String} forgot_password_token     Forgot password token
+     * @apiParam {String} new_password     New password
+     *
+     * @apiErrorStructure ResourceError
+     */
+    app.post(apiPath('reset'), controller.reset.bind(controller));
 
-        fetchMessages(req.params);
+    /**
+     * @api {get} /logout/ Logout user
+     * @apiName LogoutUser
+     * @apiGroup User
+     * @apiPermission all
+     *
+     * @apiParam {String} forgot_password_token     Forgot password token
+     * @apiParam {String} new_password     New password
+     *
+     * @apiErrorStructure ResourceError
+     */
+    app.get(apiPath('logout'), controller.logout.bind(controller));
 
-        function fetchMessages(params) {
-            var method = params.type + '.history';
+    /**
+     * @api {get} /isloggedin/ Is logged in
+     * @apiName IsLoggedInUser
+     * @apiGroup User
+     * @apiPermission all
+     *
+     * @apiDescription Returns the data of the current logged in user.
+     *
+     * @apiParam {Object} User     Current user object
+     * @apiParam {Boolean} isLoggedIn     Is logged in flag
+     *
+     */
+    app.get(apiPath('isloggedin'), controller.isloggedin.bind(controller));
 
-            var opts = {
-                channel: params.id,
-                latest: params.latest
-            };
+    /**
+     * @api {get} /auth/slack Slack authentication
+     * @apiName SlackAuthUser
+     * @apiGroup User
+     * @apiPermission all
+     *
+     * @apiDescription Auth user via Slack.
+     *
+     */
+    app.get('/auth/slack', controller.slackAuth.bind(controller));
 
-            slack.api(params.type + '.history', opts, function(err, response){
-                if(err || response.error) {
-                    console.log(err);
-                    return res.sendStatus(400);
-                }
+    /**
+     * @api {get} /auth/slack/callback Slack handler
+     * @apiName SlackAuthUser
+     * @apiGroup User
+     * @apiPermission all
+     *
+     * @apiDescription Slac Callback handler
+     */
+    app.get('/auth/slack/callback', controller.slackHandler.bind(controller));
 
-                var messages = response.messages;
-
-                messages.forEach(function(m) {
-                    if(m.sub_type === 'file_share' || m.attachments){
-                        io.emit('importer-' + user.slackId, m);
-                    }
-                });
-
-                // Free plan, we've hit the limit
-                if(response.is_limited) return res.sendStatus(200);
-
-                // We have more, so recurse
-                if(response.has_more) {
-                    params.latest = messages[messages.length-1].ts;
-                    return fetchMessages(params);
-                }
-
-                // If we got here we're done with importing
-                return res.sendStatus(200);
-            });
-        }
-    });
-}
-
-
+};

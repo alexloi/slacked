@@ -39,9 +39,6 @@ var run = function(http) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    userRoutes(app);
-    staticRoutes(app);
-
     return app;
 };
 
