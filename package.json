@@ -4,7 +4,8 @@
   "description": "Repository of all things slacked",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "start": "nodemon startup.js",
+    "test": "bash ./scripts/test"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,8 @@
     "jsclass": "^4.0.5",
     "inflect": "^0.3.0",
     "cli-color": "^0.3.2",
-    "i": "^0.3.2"
+    "i": "^0.3.2",
+    "chai-as-promised": "^4.3.0",
+    "chai": "^2.1.1"
   }
 }

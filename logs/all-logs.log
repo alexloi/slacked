@@ -26,3 +26,81 @@
 {"level":"info","message":" *** Server & socket running ***","timestamp":"2015-03-07T23:47:38.686Z"}
 {"level":"info","message":" *** Server & socket running ***","timestamp":"2015-03-07T23:47:39.991Z"}
 {"level":"info","message":" *** Server & socket running ***","timestamp":"2015-03-07T23:48:03.523Z"}
+{"level":"info","message":" *** Server & socket running ***","timestamp":"2015-03-08T01:08:48.997Z"}
+{"date":"Sun Mar 08 2015 01:29:40 GMT+0000 (GMT)","process":{"pid":19663,"uid":501,"gid":20,"cwd":"/code/streethub/projects/slacked","execPath":"/usr/local/Cellar/node/0.10.26/bin/node","version":"v0.10.26","argv":["node","/code/streethub/projects/slacked/startup.js"],"memoryUsage":{"rss":76890112,"heapTotal":62339584,"heapUsed":41126048}},"os":{"loadavg":[2.85009765625,2.6953125,2.65673828125],"uptime":906026},"trace":[{"column":29,"file":"/code/streethub/projects/slacked/startup.js","function":"","line":21,"method":null,"native":false},{"column":16,"file":"events.js","function":"Server.g","line":180,"method":"g","native":false},{"column":17,"file":"events.js","function":"Server.EventEmitter.emit","line":92,"method":"EventEmitter.emit","native":false},{"column":10,"file":"net.js","function":null,"line":1055,"method":null,"native":false},{"column":13,"file":"node.js","function":"process._tickCallback","line":415,"method":"_tickCallback","native":false}],"stack":["ReferenceError: config is not defined","    at Server.<anonymous> (/code/streethub/projects/slacked/startup.js:21:29)","    at Server.g (events.js:180:16)","    at Server.EventEmitter.emit (events.js:92:17)","    at net.js:1055:10","    at process._tickCallback (node.js:415:13)"],"level":"error","message":"uncaughtException: config is not defined","timestamp":"2015-03-08T01:29:40.413Z"}
+{"date":"Sun Mar 08 2015 01:30:17 GMT+0000 (GMT)","process":{"pid":19724,"uid":501,"gid":20,"cwd":"/code/streethub/projects/slacked","execPath":"/usr/local/Cellar/node/0.10.26/bin/node","version":"v0.10.26","argv":["node","/code/streethub/projects/slacked/startup.js"],"memoryUsage":{"rss":80281600,"heapTotal":64403456,"heapUsed":31763360}},"os":{"loadavg":[2.46826171875,2.62060546875,2.630859375],"uptime":906063},"trace":[{"column":29,"file":"/code/streethub/projects/slacked/startup.js","function":"","line":21,"method":null,"native":false},{"column":16,"file":"events.js","function":"Server.g","line":180,"method":"g","native":false},{"column":17,"file":"events.js","function":"Server.EventEmitter.emit","line":92,"method":"EventEmitter.emit","native":false},{"column":10,"file":"net.js","function":null,"line":1055,"method":null,"native":false},{"column":13,"file":"node.js","function":"process._tickCallback","line":415,"method":"_tickCallback","native":false}],"stack":["ReferenceError: config is not defined","    at Server.<anonymous> (/code/streethub/projects/slacked/startup.js:21:29)","    at Server.g (events.js:180:16)","    at Server.EventEmitter.emit (events.js:92:17)","    at net.js:1055:10","    at process._tickCallback (node.js:415:13)"],"level":"error","message":"uncaughtException: config is not defined","timestamp":"2015-03-08T01:30:17.216Z"}
+{"date":"Sun Mar 08 2015 01:30:55 GMT+0000 (GMT)","process":{"pid":19820,"uid":501,"gid":20,"cwd":"/code/streethub/projects/slacked","execPath":"/usr/local/Cellar/node/0.10.26/bin/node","version":"v0.10.26","argv":["node","/code/streethub/projects/slacked/startup.js"],"memoryUsage":{"rss":76890112,"heapTotal":62339584,"heapUsed":41152624}},"os":{"loadavg":[2.2138671875,2.54833984375,2.603515625],"uptime":906101},"trace":[{"column":29,"file":"/code/streethub/projects/slacked/startup.js","function":"","line":22,"method":null,"native":false},{"column":16,"file":"events.js","function":"Server.g","line":180,"method":"g","native":false},{"column":17,"file":"events.js","function":"Server.EventEmitter.emit","line":92,"method":"EventEmitter.emit","native":false},{"column":10,"file":"net.js","function":null,"line":1055,"method":null,"native":false},{"column":13,"file":"node.js","function":"process._tickCallback","line":415,"method":"_tickCallback","native":false}],"stack":["ReferenceError: config is not defined","    at Server.<anonymous> (/code/streethub/projects/slacked/startup.js:22:29)","    at Server.g (events.js:180:16)","    at Server.EventEmitter.emit (events.js:92:17)","    at net.js:1055:10","    at process._tickCallback (node.js:415:13)"],"level":"error","message":"uncaughtException: config is not defined","timestamp":"2015-03-08T01:30:55.247Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:31:24.319Z"}
+{"level":"info","message":"SERVER: localhost:3100","timestamp":"2015-03-08T01:31:24.321Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:31:24.321Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:31:27.898Z"}
+{"level":"info","message":"SERVER: localhost:3100","timestamp":"2015-03-08T01:31:27.900Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:31:27.900Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:32:23.878Z"}
+{"level":"info","message":"SERVER: localhost:3100","timestamp":"2015-03-08T01:32:23.880Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:32:23.880Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:32:50.729Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:32:50.730Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:32:54.190Z"}
+{"level":"info","message":"SERVER: localhost:3100","timestamp":"2015-03-08T01:32:54.192Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:32:54.192Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:32:59.919Z"}
+{"level":"info","message":"SERVER: localhost:3100","timestamp":"2015-03-08T01:32:59.920Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:32:59.921Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:33:10.080Z"}
+{"level":"info","message":"SERVER: localhost:3100","timestamp":"2015-03-08T01:33:10.082Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:33:10.082Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:33:18.012Z"}
+{"level":"info","message":"SERVER: localhost:3100","timestamp":"2015-03-08T01:33:18.013Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:33:18.014Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:33:28.158Z"}
+{"level":"info","message":"SERVER: localhost:NaN","timestamp":"2015-03-08T01:33:28.159Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:33:28.159Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:33:40.539Z"}
+{"level":"info","message":"SERVER: localhost:NaN","timestamp":"2015-03-08T01:33:40.540Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:33:40.541Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:33:48.460Z"}
+{"level":"info","message":"SERVER: localhost:NaN","timestamp":"2015-03-08T01:33:48.462Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:33:48.463Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:34:04.214Z"}
+{"level":"info","message":"SERVER: localhost:undefined","timestamp":"2015-03-08T01:34:04.216Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:34:04.216Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:34:15.579Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:34:15.580Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:34:15.580Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:35:55.927Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:35:55.930Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:35:55.930Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:36:16.999Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:36:17.000Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:36:17.001Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:37:22.473Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:37:22.475Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:37:22.475Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:37:28.156Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:37:28.158Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:37:28.158Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:39:00.690Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:39:00.691Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:39:00.692Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:39:09.755Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:39:09.756Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:39:09.756Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:39:13.231Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:39:13.233Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:39:13.233Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:39:28.939Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:39:28.941Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:39:28.941Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:39:36.875Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:39:36.877Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:39:36.877Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:39:42.571Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:39:42.573Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:39:42.573Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:40:21.961Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:40:21.962Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:40:21.963Z"}
+{"level":"info","message":"ENV: development","timestamp":"2015-03-08T01:40:27.645Z"}
+{"level":"info","message":"SERVER: localhost:3000","timestamp":"2015-03-08T01:40:27.647Z"}
+{"level":"info","message":"Running...","timestamp":"2015-03-08T01:40:27.647Z"}
