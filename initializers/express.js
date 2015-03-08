@@ -7,11 +7,10 @@ var express = require('express');
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var passport = require('passport');
+var morgan = require('morgan');
 
 var app = express();
 
@@ -37,6 +36,9 @@ var run = function(http) {
         saveUninitialized: true,
         store: new MongoStore({ mongooseConnection: mongoose.connection })
     }));
+
+    // HTTP Logging
+    app.use(morgan(':method :url :response-time :status'));
 
     // Passport
     passportConfig.init();

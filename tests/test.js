@@ -1,6 +1,4 @@
 var globals = require('../globals');
-var config = loadConfig();
-
 var fs = require('fs');
 var _ = require('lodash');
 var mongoose = require('mongoose');
@@ -15,13 +13,6 @@ Bluebird.longStackTraces();
 
 mongoose.models = {};
 mongoose.modelSchemas = {};
-
-if (!_.contains(['testing', 'circleci'], process.env.NODE_ENV)) throw new Error('To run the tests please ensure you env is testing or circleci');
-
-if (mongoose.connection.readyState === 0) {
-    mongoose.connect(config.dbUri);
-}
-
 // export all the .ENV variables when runnning the tests
 var source;
 try{
@@ -35,6 +26,15 @@ source.split('\n').forEach(function (line) {
     var parts = line.split('=');
     process.env[parts[0]] = parts[1];
 });
+
+if (!_.contains(['testing', 'circleci'], process.env.NODE_ENV)) throw new Error('To run the tests please ensure you env is testing or circleci');
+
+// Setup
+
+var config = loadConfig();
+if (mongoose.connection.readyState === 0) {
+    mongoose.connect(config.db);
+}
 
 if (process.env.TEST) {
     require('./' + process.env.TEST + '.test');

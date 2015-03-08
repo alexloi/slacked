@@ -25,24 +25,23 @@ var run = function(server, app) {
 
     // Connection will be called only for authed users
     io.on('connection', function(socket) {
-        console.log('- User connected', socket.request.user);
         var user = socket.request.user;
 
         socket.emit(user.slackId, { msg: 'Username is: ' + user.displayName } );
         socket.emit(user.slackTeamId, { msg: 'Team is: ' + user.slackTeamId } );
 
         socket.on('disconnect', function(){
-            console.log('- User disconnected');
+            logger.info('socket disconnected');
         });
     });
 
     function authSuccess(data, accept){
-        console.log('** Auth success');
+        logger.info('socket authed');
         accept();
     }
 
     function authFail(data, message, error, accept){
-        console.log('** Auth fail');
+        logger.info('socket auth fail');
         accept(new Error(message));
     }
 };

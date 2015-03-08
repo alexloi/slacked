@@ -56,10 +56,7 @@ if [ -z "$TEST" ]; then
         export TEST=$test
 
         echo "*** Performing test: $test"
-
-        cd ./backend
         run
-        cd ../
     done
 fi
 
@@ -75,9 +72,7 @@ do
         cd ../
     else
         export TEST=$test
-        cd ./backend
         run
-        cd ../
     fi
 done
 

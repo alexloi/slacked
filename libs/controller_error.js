@@ -141,6 +141,9 @@ function handleMongooseError (res, action, error) {
     return res.send(status, { errors: errors });
 }
 
-module.exports.handleServerError = handleServerError;
-module.exports.handleProgrammerError = handleProgrammerError;
-module.exports.handleMongooseError = handleMongooseError;
+module.exports = {
+    handleAuthError: handleAuthError,
+    handleServerError: handleServerError,
+    handleProgrammerError: handleProgrammerError,
+    handleMongooseError: handleMongooseError
+};

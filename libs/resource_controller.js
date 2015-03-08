@@ -7,6 +7,7 @@ var Class = require('jsclass/src/core').Class;
 var Controller = require('./controller');
 var _ = require('lodash');
 var JSONApiMongo = require('./jsonapi_mongo');
+var helpers = dependency('lib', 'helpers');
 var ErrorTypes = dependency( 'lib', 'error');
 var AuthError = ErrorTypes.AuthError;
 var ValidationError = ErrorTypes.ValidationError;
@@ -234,15 +235,11 @@ var ResourceController = new Class(Controller, {
                     response = JSONApiMongo.appendLinks(response, self.resource.model.schema);
                     if (opts.meta) response.meta = opts.meta;
                     res.set('Content-Type', self.MIME.standard);
-                    res.set('Location', [config.serverAddr + apiV2(self.resource.resourceName), data._id].join('/'));
+                    res.set('Location', [config.serverAddr + helpers.apiPath(self.resource.resourceName), data._id].join('/'));
                     return res.send(201, response);
                 })
                 // auth errors
                 .catch(AuthError, errorHandlers.handleAuthError.bind(self, res, 'create'))
-                // payment errors
-                .catch(PaymentError, errorHandlers.handlePaymentError.bind(self, res, 'create'))
-                // Card errors
-                .catch(CardError, errorHandlers.handleCardError.bind(self, res, 'create'))
                 // mongoose validation errors, cast to ObjectId errors and other fancyness
                 .catch(ValidationError, ArrayCastError, MongooseError, errorHandlers.handleMongooseError.bind(self, res, 'create'))
                 // programmer errors

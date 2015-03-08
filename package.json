@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon startup.js",
-    "test": "bash ./scripts/test"
+    "test": "mocha tests/test.js"
   },
   "repository": {
     "type": "git",
@@ -48,6 +48,9 @@
     "cli-color": "^0.3.2",
     "i": "^0.3.2",
     "chai-as-promised": "^4.3.0",
-    "chai": "^2.1.1"
+    "chai": "^2.1.1",
+    "morgan": "^1.5.1",
+    "chance": "^0.7.3",
+    "mocha": "^2.2.0"
   }
 }

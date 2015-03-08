@@ -60,7 +60,7 @@ module.exports = function(app, controller) {
 
             slack.api(params.type + '.history', opts, function(err, response){
                 if(err || response.error) {
-                    console.log(err);
+                    logger.error(err);
                     return res.sendStatus(400);
                 }
 
